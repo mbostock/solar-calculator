@@ -1,6 +1,6 @@
 {
   "name": "solar-calculator",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Equations for computing the position of the Sun.",
   "keywords": [
     "solar",
