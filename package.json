@@ -7,14 +7,25 @@
     "sun"
   ],
   "homepage": "https://github.com/mbostock/solar-calculator",
-  "license": "BSD-3-Clause",
+  "license": "ISC",
   "author": {
     "name": "Mike Bostock",
-    "url": "http://bost.ocks.org/mike"
+    "url": "https://bost.ocks.org/mike/"
   },
-  "main": "index.js",
+  "main": "dist/solar-calculator.js",
+  "module": "index",
   "repository": {
     "type": "git",
     "url": "https://github.com/mbostock/solar-calculator.git"
+  },
+  "scripts": {
+    "pretest": "rm -rf dist && mkdir dist && rollup --banner \"$(preamble)\" -f umd -n solar -o dist/solar-calculator.js -- index.js",
+    "prepublish": "npm run pretest && uglifyjs --preamble \"$(preamble)\" dist/solar-calculator.js -c -m -o dist/solar-calculator.min.js",
+    "postpublish": "git push && git push --tags && zip -j dist/solar-calculator.zip -- LICENSE README.md dist/solar-calculator.js dist/solar-calculator.min.js"
+  },
+  "devDependencies": {
+    "package-preamble": "^0.1.0",
+    "rollup": "^0.42.0",
+    "uglify-js": "^3.0.15"
   }
 }
