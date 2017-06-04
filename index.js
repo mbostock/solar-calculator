@@ -26,7 +26,7 @@ export default function(location) {
         theta = solarDeclination(centuries),
         ctheta = cos(theta),
         stheta = sin(theta),
-        azimuth = ((date - d3.utcDay.floor(date)) / 864e5 * tau + equationOfTime(centuries) + x) % tau - pi,
+        azimuth = ((date - utcDay(date)) / 864e5 * tau + equationOfTime(centuries) + x) % tau - pi,
         zenith = acos(max(-1, min(1, sy * stheta + cy * ctheta * cos(azimuth)))),
         azimuthDenominator = cy * sin(zenith);
 
@@ -48,10 +48,10 @@ export default function(location) {
   }
 
   function noon(date) {
-    var centuries = (d3.utcDay.floor(date) - J2000) / (864e5 * 36525),
+    var centuries = (utcDay(date) - J2000) / (864e5 * 36525),
         minutes = (minutesOffset - (equationOfTime(centuries + (minutesOffset - (equationOfTime(centuries - longitude / (360 * 365.25 * 100)) * degrees * 4)) / (1440 * 365.25 * 100)) * degrees * 4) - date.getTimezoneOffset()) % 1440;
     if (minutes < 0) minutes += 1440;
-    return new Date(+d3.timeDay.floor(date) + minutes * 60 * 1000);
+    return new Date(+timeDay(date) + minutes * 60 * 1000);
   }
 
   return {
@@ -59,6 +59,18 @@ export default function(location) {
     noon: noon
   };
 };
+
+function utcDay(date) {
+  date = new Date(+date);
+  date.setUTCHours(0, 0, 0, 0);
+  return date;
+}
+
+function timeDay(date) {
+  date = new Date(+date);
+  date.setHours(0, 0, 0, 0);
+  return date;
+}
 
 function equationOfTime(centuries) {
   var e = eccentricityEarthOrbit(centuries),
