@@ -13,19 +13,23 @@
     "url": "https://bost.ocks.org/mike/"
   },
   "main": "dist/solar-calculator.js",
-  "module": "index",
+  "module": "src/index",
   "repository": {
     "type": "git",
     "url": "https://github.com/mbostock/solar-calculator.git"
   },
   "scripts": {
-    "pretest": "rm -rf dist && mkdir dist && rollup --banner \"$(preamble)\" -f umd -n solar -o dist/solar-calculator.js -- index.js",
+    "pretest": "rm -rf dist && mkdir dist && rollup --banner \"$(preamble)\" -f umd -n solar -o dist/solar-calculator.js -- src/index.js",
+    "test": "tape 'test/**/*-test.js' && eslint src",
     "prepublish": "npm run pretest && uglifyjs --preamble \"$(preamble)\" dist/solar-calculator.js -c -m -o dist/solar-calculator.min.js",
     "postpublish": "git push && git push --tags && zip -j dist/solar-calculator.zip -- LICENSE README.md dist/solar-calculator.js dist/solar-calculator.min.js"
   },
   "devDependencies": {
+    "d3-time": "^1.0.6",
+    "eslint": "^3.19.0",
     "package-preamble": "^0.1.0",
     "rollup": "^0.42.0",
+    "tape": "^4.6.3",
     "uglify-js": "^3.0.15"
   }
 }

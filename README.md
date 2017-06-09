@@ -1,4 +1,4 @@
-Equations based on [NOAA’s Solar Calculator](http://www.esrl.noaa.gov/gmd/grad/solcalc/); all angles in radians.
+Equations based on [NOAA’s Solar Calculator](http://www.esrl.noaa.gov/gmd/grad/solcalc/).
 
 Examples:
 
