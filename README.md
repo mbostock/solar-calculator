@@ -12,7 +12,7 @@ Given a time *t* in [J2000.0 centuries](#century), returns the Sun’s [apparent
 
 <a name="century" href="#century">#</a> solar.<b>century</b>(<i>date</i>) [<>](https://github.com/mbostock/solar-calculator/blob/master/src/century.js "Source")
 
-Given a [date](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date), returns the fraction number of centures since the J2000.0 epoch, 2000-01-01T12:00:00Z. (No correction is made between Terrestrial Time and UTC.)
+Given a [date](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date), returns the fraction number of centuries since the J2000.0 epoch, 2000-01-01T12:00:00Z. (No correction is made between Terrestrial Time and UTC.)
 
 <a name="declination" href="#declination">#</a> solar.<b>declination</b>(<i>t</i>) [<>](https://github.com/mbostock/solar-calculator/blob/master/src/declination.js "Source")
 
